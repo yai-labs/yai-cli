@@ -1,22 +1,16 @@
-# CLI Contract Surface
+# Contract Boundary
 
-## Scope
+`yai-cli` implementa e consuma specs pin-nate in `deps/yai-specs`.
+Le specs in quella directory sono la source-of-truth contrattuale.
 
-This repository provides the executable CLI interface for YAI.
-It is a consumer of `yai-specs` and must stay compatible with pinned specs revisions.
+## Canonical References
 
-## Normative Sources
+- Commands contract: `deps/yai-specs/cli/commands.v1.json`
+- Commands schema: `deps/yai-specs/cli/commands.schema.json`
+- Protocol envelope/IDs: `deps/yai-specs/protocol/transport.h`, `deps/yai-specs/protocol/yai_protocol_ids.h`
+- Errors/auth/roles: `deps/yai-specs/protocol/errors.h`, `deps/yai-specs/protocol/auth.h`, `deps/yai-specs/protocol/roles.h`
 
-Normative protocol and contract definitions are external to this repository and live in `deps/yai-specs`.
-This repository must not diverge from those contracts.
+## Rule
 
-## Compatibility Rules
-
-- CLI behavior must remain compatible with the active specs major version.
-- Breaking behavior changes require coordinated versioning and migration communication.
-- Additive behavior should be backward compatible whenever possible.
-
-## Non-Goals
-
-- Defining protocol wire format in this repository.
-- Duplicating canonical specs text that already exists in `yai-specs`.
+Nessuna semantica comando/protocollo puo' essere inventata fuori dalle specs pin-nate.
+Se c'e' drift: aprire issue e riallineare CLI/specs prima del rilascio.
