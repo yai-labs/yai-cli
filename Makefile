@@ -52,9 +52,9 @@ SRCS := \
 
 OBJS := $(patsubst src/%.c,$(BUILD_DIR)/%.o,$(SRCS))
 
-.PHONY: all clean dirs
+.PHONY: all clean dirs docs docs-clean
 
-all: dirs $(TARGET)
+all: dirs docs $(TARGET)
 	@echo "--- [YAI-CLI] Build Complete ---"
 
 dirs:
@@ -71,5 +71,20 @@ $(BUILD_DIR)/%.o: src/%.c | dirs
 
 clean:
 	@rm -rf $(BUILD_DIR) $(BIN_DIR)
+
+# -----------------------------------------
+# Docs (Doxygen)
+# -----------------------------------------
+DOXYFILE ?= Doxyfile
+DOXYGEN ?= doxygen
+DOXY_OUT ?= dist/docs
+
+docs:
+	@mkdir -p $(DOXY_OUT)
+	@$(DOXYGEN) $(DOXYFILE)
+	@echo "[yai-cli] docs: $(DOXY_OUT)/doxygen/html/index.html"
+
+docs-clean:
+	@rm -rf $(DOXY_OUT)
 
 -include $(OBJS:.o=.d)

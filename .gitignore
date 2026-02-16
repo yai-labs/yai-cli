@@ -5,6 +5,7 @@
 # Build outputs
 build/
 dist/
+dist/docs/
 
 # Object files
 *.o
