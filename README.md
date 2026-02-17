@@ -60,3 +60,9 @@ See `docs/SPECS_PINNING.md` for rules.
 
 This repo follows the policy in `VERSIONING.md`.
 Breaking CLI changes require a `MAJOR` bump and spec alignment.
+
+## License
+
+Apache License 2.0 (Apache-2.0).
+The full license text is available in `LICENSE`.
+Third-party licensing notices are tracked in `THIRD_PARTY_NOTICES.md`.
