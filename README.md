@@ -3,6 +3,9 @@
 `yai-cli` is the official command-line client for YAI’s control plane.
 It is a thin, contract-driven interface over the pinned specs in `deps/yai-specs`.
 
+Current release baseline: `v0.1.0`.
+Current contract line: `SPECS_API_VERSION=v1`.
+
 ## What It Is
 
 - A stable CLI surface for Root/Kernel/Engine/Mind control flows.

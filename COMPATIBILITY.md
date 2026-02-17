@@ -2,10 +2,9 @@
 
 Official compatibility between `yai-cli` and `yai-specs`.
 
-| yai-cli | yai-specs supported range |
-|---|---|
-| v1.x | >=1.0.0 <2.0.0 |
-| v2.x (future) | >=2.0.0 <3.0.0 |
+| yai-cli | SPECS_API_VERSION | yai-specs pin | Notes |
+|---|---|---|---|
+| v0.1.x | v1 | pinned commit/tag required per release | Initial public baseline |
 
 Note:
-- Official bundle = CLI + pinned specs + core bins.
+- Official bundle composition is validated via explicit release manifests.
