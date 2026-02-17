@@ -1,3 +1,4 @@
+/* SPDX-License-Identifier: Apache-2.0 */
 // tools/cli/src/cmd_dispatch.c
 
 #include "../include/yai_cmd.h"
