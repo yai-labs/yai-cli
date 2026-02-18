@@ -1,32 +1,38 @@
-#include "../include/yai_fmt.h"
-#include "../include/yai_cli.h"
-#include "../include/yai_rpc.h"
+#include <yai_cli/fmt.h>
+#include <yai_cli/cli.h>
+#include <yai_cli/rpc.h>
 
 #include <yai_protocol_ids.h>
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
-/* ============================================================
-   L1: Workspace Management (via Root Machine Plane)
-   ============================================================ */
+/*
+ * L1: Kernel Dispatcher (via Root Machine Plane)
+ *
+ * Usage:
+ *   yai kernel <ping|status|stop|...>
+ *
+ * Behavior:
+ *   - Connects to Root Machine Plane (ws_id = "system")
+ *   - Authority set before handshake
+ *   - Strict binary envelope
+ */
 
-static void ws_usage(void) {
-    printf("Workspace Management (L1 - Root Plane)\n");
-    printf("Usage:\n");
-    printf("  yai ws create  <id>\n");
-    printf("  yai ws list\n");
-    printf("  yai ws destroy <id>   (requires --arming)\n");
-}
-
-int yai_cmd_ws(int argc, char **argv, const yai_cli_opts_t *opt)
+int yai_cmd_kernel(int argc, char **argv, const yai_cli_opts_t *opt)
 {
     if (argc < 1) {
-        ws_usage();
+        fprintf(stderr, "Usage: yai kernel <command>\n");
         return 1;
     }
 
-    const char *sub = argv[0];
+    const char *cmd = argv[0];
+
+    uint32_t command_id =
+        (strcmp(cmd, "ping") == 0)
+        ? YAI_CMD_PING
+        : YAI_CMD_CONTROL;
 
     yai_rpc_client_t client;
     char response[YAI_RPC_LINE_MAX];
@@ -36,7 +42,7 @@ int yai_cmd_ws(int argc, char **argv, const yai_cli_opts_t *opt)
        CONNECT TO ROOT MACHINE PLANE
        ============================================================ */
 
-    /* CRITICAL: root machine ws_id is "system" */
+    /* CRITICAL: root plane ws_id is "system" */
     if (yai_rpc_connect(&client, "system") != 0) {
         fprintf(stderr, "ERR: cannot connect to root plane\n");
         return -1;
@@ -48,8 +54,8 @@ int yai_cmd_ws(int argc, char **argv, const yai_cli_opts_t *opt)
 
     yai_rpc_set_authority(
         &client,
-        (opt && opt->arming) ? 1 : 0,
-        (opt && opt->role) ? opt->role : "operator"
+        opt ? opt->arming : 0,
+        opt && opt->role ? opt->role : "operator"
     );
 
     /* ============================================================
@@ -66,37 +72,19 @@ int yai_cmd_ws(int argc, char **argv, const yai_cli_opts_t *opt)
        BUILD PAYLOAD
        ============================================================ */
 
-    char payload[512];
+    char payload[256];
 
-    if (strcmp(sub, "list") == 0) {
+    int n = snprintf(
+        payload,
+        sizeof(payload),
+        "{\"method\":\"%s\",\"params\":{}}",
+        cmd
+    );
 
-        snprintf(payload, sizeof(payload),
-                 "{\"method\":\"ws_list\",\"params\":{}}");
-
-    } 
-    else if (strcmp(sub, "create") == 0 ||
-             strcmp(sub, "destroy") == 0) {
-
-        if (argc < 2) {
-            ws_usage();
-            yai_rpc_close(&client);
-            return -3;
-        }
-
-        const char *method =
-            (strcmp(sub, "create") == 0)
-            ? "ws_create"
-            : "ws_destroy";
-
-        snprintf(payload, sizeof(payload),
-                 "{\"method\":\"%s\",\"params\":{\"ws_id\":\"%s\"}}",
-                 method,
-                 argv[1]);
-    } 
-    else {
-        ws_usage();
+    if (n <= 0 || (size_t)n >= sizeof(payload)) {
+        fprintf(stderr, "ERR: payload build failed\n");
         yai_rpc_close(&client);
-        return -4;
+        return -3;
     }
 
     /* ============================================================
@@ -105,7 +93,7 @@ int yai_cmd_ws(int argc, char **argv, const yai_cli_opts_t *opt)
 
     int rc = yai_rpc_call_raw(
         &client,
-        YAI_CMD_CONTROL,
+        command_id,
         payload,
         (uint32_t)strlen(payload),
         response,
@@ -117,7 +105,7 @@ int yai_cmd_ws(int argc, char **argv, const yai_cli_opts_t *opt)
         response[resp_len] = '\0';
         yai_print_response(response, opt ? opt->json : 0);
     } else {
-        fprintf(stderr, "ERR: ws command failed (%d)\n", rc);
+        fprintf(stderr, "ERR: kernel command failed (%d)\n", rc);
     }
 
     yai_rpc_close(&client);
