@@ -30,9 +30,9 @@ See `docs/INSTALL.md` for prerequisites.
 
 ## Contract Discipline (Non-Negotiable)
 
-- Canonical command set: `deps/yai-specs/cli/commands.v1.json`
-- Canonical command schema: `deps/yai-specs/cli/commands.schema.json`
-- Protocol envelope/IDs: `deps/yai-specs/protocol/transport.h` and `deps/yai-specs/protocol/yai_protocol_ids.h`
+- Canonical command set: `deps/yai-specs/specs/cli/schema/commands.v1.json`
+- Canonical command schema: `deps/yai-specs/specs/cli/schema/commands.schema.json`
+- Protocol envelope/IDs: `deps/yai-specs/specs/protocol/include/transport.h` and `deps/yai-specs/specs/protocol/include/yai_protocol_ids.h`
 
 No command or protocol behavior may drift from the pinned specs.
 If drift is detected, open an issue and realign before release.
