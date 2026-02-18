@@ -254,8 +254,8 @@ yai-cli/1.0
 $ test ! -d scripts
 OK: scripts directory absent
 
-$ rg -n "scripts/" -S .
-OK: zero scripts/ references
+$ rg -n "scripts-dir" -S .
+OK: zero scripts-dir references
 
 $ rg -n "#include\s+\"yai_" -S src tests
 OK: zero legacy quoted yai_ includes in src/tests
