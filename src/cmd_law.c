@@ -22,11 +22,11 @@ typedef struct {
 } law_req_t;
 
 static const law_req_t REQ[] = {
-    { "control/control_plane.v1.json", 0 },
-    { "control/authority.json",        0 },
-    { "protocol/protocol.h",           0 },
-    { "protocol/transport.h",          0 },
-    { "protocol/yai_protocol_ids.h",   0 },
+    { "specs/control/schema/control_plane.v1.json", 0 },
+    { "specs/control/schema/authority.json",        0 },
+    { "specs/protocol/include/protocol.h",          0 },
+    { "specs/protocol/include/transport.h",         0 },
+    { "specs/protocol/include/yai_protocol_ids.h",  0 },
     { NULL, 0 }
 };
 
@@ -131,8 +131,8 @@ static int cmd_check(void) {
 static int cmd_tree(void) {
     puts("specs/ (resolved by YAI_SPECS_DIR or repo fallbacks)");
     puts("└── [deps/yai-specs | contracts]/");
-    puts("    ├── control/");
-    puts("    ├── protocol/");
+    puts("    ├── specs/control/schema/");
+    puts("    ├── specs/protocol/include/");
     puts("    └── ...");
     return 0;
 }

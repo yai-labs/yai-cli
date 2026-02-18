@@ -46,8 +46,14 @@ Two common paths:
 **1) From a YAI Bundle (recommended)**  
 The public bundle ships an entrypoint `yai` that includes the CLI.
 
+<<<<<<< HEAD
+- Canonical command set: `deps/yai-specs/specs/cli/schema/commands.v1.json`
+- Canonical command schema: `deps/yai-specs/specs/cli/schema/commands.schema.json`
+- Protocol envelope/IDs: `deps/yai-specs/specs/protocol/include/transport.h` and `deps/yai-specs/specs/protocol/include/yai_protocol_ids.h`
+=======
 **2) Build from source (this repo)**  
 Produces `dist/bin/yai-cli`.
+>>>>>>> origin/main
 
 ---
 

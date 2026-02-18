@@ -5,10 +5,10 @@ Specs in that directory are the contract source of truth.
 
 ## Canonical References
 
-- Commands contract: `deps/yai-specs/cli/commands.v1.json`
-- Commands schema: `deps/yai-specs/cli/commands.schema.json`
-- Protocol envelope/IDs: `deps/yai-specs/protocol/transport.h`, `deps/yai-specs/protocol/yai_protocol_ids.h`
-- Errors/auth/roles: `deps/yai-specs/protocol/errors.h`, `deps/yai-specs/protocol/auth.h`, `deps/yai-specs/protocol/roles.h`
+- Commands contract: `deps/yai-specs/specs/cli/schema/commands.v1.json`
+- Commands schema: `deps/yai-specs/specs/cli/schema/commands.schema.json`
+- Protocol envelope/IDs: `deps/yai-specs/specs/protocol/include/transport.h`, `deps/yai-specs/specs/protocol/include/yai_protocol_ids.h`
+- Errors/auth/roles: `deps/yai-specs/specs/protocol/include/errors.h`, `deps/yai-specs/specs/protocol/include/auth.h`, `deps/yai-specs/specs/protocol/include/roles.h`
 
 ## Rule
 
