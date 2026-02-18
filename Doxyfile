@@ -12,7 +12,7 @@ RECURSIVE              = YES
 FILE_PATTERNS          = *.h *.md
 
 # Inputs
-INPUT                  = include \
+INPUT                  = include/yai_cli \
                          src \
                          README.md \
                          docs/api/C_MAINPAGE.md

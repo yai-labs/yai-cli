@@ -34,21 +34,21 @@ LDFLAGS ?=
 # ---- Sources ----
 SRCS := \
     src/main.c \
-    src/cmd_dispatch.c \
-    src/cmd_engine.c \
-    src/cmd_kernel.c \
-    src/cmd_mind.c \
-    src/cmd_root.c \
-    src/cmd_ws.c \
-    src/cmd_law.c \
-    src/cmd_test.c \
-    src/cmd_up.c \
-    src/env.c \
-    src/fmt.c \
-    src/paths.c \
-    src/rpc.c
+    src/cli/dispatch.c \
+    src/commands/engine.c \
+    src/commands/kernel.c \
+    src/commands/mind.c \
+    src/commands/root.c \
+    src/commands/workspace.c \
+    src/commands/law.c \
+    src/commands/selftest.c \
+    src/commands/up.c \
+    src/platform/env.c \
+    src/platform/paths.c \
+    src/support/fmt.c \
+    src/runtime/rpc_client.c
 
-OBJS := $(patsubst src/%.c,$(BUILD_DIR)/%.o,$(SRCS))
+OBJS := $(patsubst src/%.c,$(BUILD_DIR)/%.o,$(SRCS)
 
 .PHONY: all clean dirs docs docs-clean
 
