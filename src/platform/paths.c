@@ -1,5 +1,5 @@
-#include "yai_cli/paths.h"
-#include "yai_cli/env.h"
+#include <yai_cli/paths.h>
+#include <yai_cli/env.h>
 
 #include <stdio.h>
 #include <string.h>

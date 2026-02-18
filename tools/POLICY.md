@@ -1,7 +1,7 @@
 # Tools Policy
 
 Non-negotiables:
-- No `scripts/` directory.
+- No `scripts` directory.
 - Entrypoints live only under `tools/bin/`.
 - Tests live only under `tests/`.
 - Documentation lives only under `docs/`.

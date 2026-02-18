@@ -1,4 +1,4 @@
-#include "yai_cli/cmd_law.h"
+#include <yai_cli/cmd_law.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>

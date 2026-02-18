@@ -31,7 +31,7 @@
 | docs/SPECS_PINNING.md | docs/development/specs-pinning.md | doc | Development reference re-homed |
 | docs/api/C_MAINPAGE.md | docs/api/C_MAINPAGE.md | doc | Path unchanged |
 | docs/README.md | docs/README.md | doc | Path unchanged |
-| scripts/release/bump_version.sh | tools/release/bump_version.sh | tool | Removed from scripts/ |
+| scripts (legacy) release/bump_version.sh | tools/release/bump_version.sh | tool | Removed from scripts directory |
 | tests/test_parse.c | tests/unit/parse_test.c | test | Unit test path normalized |
 | tests/test_rpc_vectors.c | tests/vectors/rpc_vectors_test.c | test | Vectors test path normalized |
 | tests/README.md | tests/README.md | test | Path unchanged |

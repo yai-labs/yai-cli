@@ -1,6 +1,6 @@
-#include "yai_cli/cli.h"
-#include "yai_cli/cmd.h"
-#include "yai_cli/paths.h"
+#include <yai_cli/cli.h>
+#include <yai_cli/cmd.h>
+#include <yai_cli/paths.h>
 
 #define _DEFAULT_SOURCE
 #define _POSIX_C_SOURCE 200809L
