@@ -64,6 +64,7 @@ $(TARGET): $(OBJS)
 	@$(CC) $(OBJS) -o $@ $(LDFLAGS)
 
 $(BUILD_DIR)/%.o: src/%.c | dirs
+t@mkdir -p $(dir $@)
 	@echo "[CC] $<"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
