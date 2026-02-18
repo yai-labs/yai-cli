@@ -18,18 +18,16 @@ TARGET := $(BIN_DIR)/yai-cli
 
 # ---- Specs (submodule) ----
 SPECS_DIR := $(ROOT_DIR)/deps/yai-specs
+SPECS_INC_PROTOCOL := $(SPECS_DIR)/specs/protocol/include
+SPECS_INC_VAULT := $(SPECS_DIR)/specs/vault/include
+SPECS_INC_RUNTIME := $(SPECS_DIR)/specs/protocol/runtime/include
 
 # ---- Flags ----
 CFLAGS ?= -Wall -Wextra -O2 -std=c11 -MMD -MP
 CFLAGS += -I$(ROOT_DIR)/include
 
-# Specs include roots:
-# - $(SPECS_DIR)        => abilita include tipo <protocol/...> o <vault/...>
-# - $(SPECS_DIR)/protocol => abilita include “piatti” tipo <yai_protocol_ids.h>, <transport.h>, <roles.h>, <protocol.h>
-# - $(SPECS_DIR)/vault    => abilita include tipo <yai_vault_abi.h>
-# - runtime headers        => <rpc_runtime.h>
 CFLAGS += -I$(SPECS_DIR)
-CFLAGS += -I$(SPECS_DIR)/protocol -I$(SPECS_DIR)/vault -I$(SPECS_DIR)/protocol/runtime
+CFLAGS += -I$(SPECS_INC_PROTOCOL) -I$(SPECS_INC_VAULT) -I$(SPECS_INC_RUNTIME)
 
 LDFLAGS ?=
 
